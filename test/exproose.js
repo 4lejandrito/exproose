@@ -3,7 +3,7 @@ var chai = require("chai");
 chai.use(require("sinon-chai"));
 var expect = chai.expect;
 var sinon = require('sinon').sandbox.create();
-var mw = rekuire('src/mw');
+var exproose = rekuire('src/exproose');
 var config = require('config');
 var db = rekuire('src/util/db');
 var express = require('express');
@@ -11,15 +11,15 @@ var express = require('express');
 describe("MEAN Web", function() {
 
     it("includes a rest client", function() {
-        expect(mw).to.have.property('rest').and.equal(rekuire('src/util/rest'));
+        expect(exproose).to.have.property('rest').and.equal(rekuire('src/util/rest'));
     });
 
     it("includes the test setup function", function() {
-        expect(mw).to.have.property('setup').and.equal(rekuire('src/util/setup'));
+        expect(exproose).to.have.property('setup').and.equal(rekuire('src/util/setup'));
     });
 
     it("includes the config from the config module", function() {
-        expect(mw).to.have.property('config').and.equal(config);
+        expect(exproose).to.have.property('config').and.equal(config);
     });
 
     describe('App', function() {
@@ -28,7 +28,7 @@ describe("MEAN Web", function() {
             sinon.restore();
         });
 
-        var app = mw();
+        var app = exproose();
 
         it("is the express app", function() {
             expect(app).to.have.property('use');

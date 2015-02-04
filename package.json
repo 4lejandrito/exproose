@@ -1,9 +1,9 @@
 {
-  "name": "mean-web",
-  "description": "Simple Express based framework for MEAN apps",
+  "name": "exproose",
+  "description": "Simple webapps with express + mongoose",
   "version": "0.0.1",
   "private": true,
-  "main": "./src/mw",
+  "main": "./src/exproose",
   "engines": {
     "node": "0.10"
   },
