@@ -8,21 +8,21 @@ var config = require('config');
 var db = rekuire('src/util/db');
 var express = require('express');
 
-describe("MEAN Web", function() {
+describe("exproose", function() {
 
-    it("includes a rest client", function() {
+    it(".rest is a rest client", function() {
         expect(exproose).to.have.property('rest').and.equal(rekuire('src/util/rest'));
     });
 
-    it("includes the test setup function", function() {
+    it(".setup is the test setup function", function() {
         expect(exproose).to.have.property('setup').and.equal(rekuire('src/util/setup'));
     });
 
-    it("includes the config from the config module", function() {
+    it(".config is the config from the config module", function() {
         expect(exproose).to.have.property('config').and.equal(config);
     });
 
-    describe('App', function() {
+    describe('()', function() {
 
         afterEach(function() {
             sinon.restore();
@@ -30,7 +30,7 @@ describe("MEAN Web", function() {
 
         var app = exproose();
 
-        it("is the express app", function() {
+        it("returns the express app", function() {
             expect(app).to.have.property('use');
             expect(app).to.have.property('all');
             expect(app).to.have.property('get');
@@ -39,15 +39,15 @@ describe("MEAN Web", function() {
             expect(app).to.have.property('delete');
         });
 
-        describe('api', function() {
-            it('returns the /api router', function() {
+        describe('api()', function() {
+            it('returns the /api express router', function() {
                 expect(app.api().__proto__).to.eq(express.Router);
             });
         });
 
-        describe('start', function() {
+        describe('start(callback)', function() {
 
-            it("calls express listen with the default port", function() {
+            it("starts the express app on the default port (8000)", function() {
                 sinon.stub(app, 'listen').returns({on: sinon.stub()});
                 var callback = function() {}
                 var oldPort = config.port;
@@ -60,7 +60,7 @@ describe("MEAN Web", function() {
                 config.port = oldPort;
             });
 
-            it("calls express listen with the port on config", function() {
+            it("starts the express app on the port specified in config.port", function() {
                 sinon.stub(app, 'listen').returns({on: sinon.stub()});
                 var callback = function() {}
 
@@ -69,7 +69,7 @@ describe("MEAN Web", function() {
                 expect(app.listen).to.have.been.calledWith(config.port);
             });
 
-            it("starts the db when the server is listening", function() {
+            it("starts the database connection", function() {
                 var server = {on: sinon.stub().withArgs('listening')};
                 sinon.stub(app, 'listen').returns(server);
                 sinon.stub(db, 'start');
@@ -83,7 +83,7 @@ describe("MEAN Web", function() {
                 expect(db.start).to.have.been.called;
             });
 
-            it("calls the callback when the db has started", function() {
+            it("runs the callback when app and db are running", function() {
                 var server = {on: sinon.stub().withArgs('listening').callsArg(1)};
                 var callback = sinon.spy();
                 sinon.stub(app, 'listen').returns(server);
@@ -99,7 +99,7 @@ describe("MEAN Web", function() {
             });
         });
 
-        describe('stop', function() {
+        describe('stop(callback)', function() {
             it("closes the server", function() {
                 var server = {
                     on: sinon.spy(),
@@ -116,7 +116,7 @@ describe("MEAN Web", function() {
                 expect(server.close).to.have.been.calledWith(callback);
             });
 
-            it("closes the database when the server is closed", function() {
+            it("closes the database after closing the app", function() {
                 var server = {on: sinon.stub().withArgs('close')};
                 sinon.stub(app, 'listen').returns(server);
                 sinon.stub(db, 'stop');

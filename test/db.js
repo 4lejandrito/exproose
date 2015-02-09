@@ -7,30 +7,34 @@ var sinon = require('sinon').sandbox.create();
 var mongoose = require('mongoose');
 var config = require('config');
 
-describe("MEAN Db", function() {
+describe("exproose().db()", function() {
 
     afterEach(function() {
         sinon.restore();
     });
 
-    it("opens the mongoose connection on start with the url from config", function() {
-        sinon.stub(mongoose, 'connect');
-        var callback = sinon.spy();
+    describe('start()', function() {
+        it("opens the mongoose connection on start with the url from config", function() {
+            sinon.stub(mongoose, 'connect');
+            var callback = sinon.spy();
 
-        db.start(callback);
+            db.start(callback);
 
-        expect(mongoose.connect).to.have.been.calledWith(
-            config.db.url,
-            callback
-        );
+            expect(mongoose.connect).to.have.been.calledWith(
+                config.db.url,
+                callback
+            );
+        });
     });
 
-    it("closes the mongoose connection on stop", function() {
-        sinon.stub(mongoose.connection, 'close');
-        var callback = sinon.spy();
+    describe('stop()', function() {
+        it("closes the mongoose connection on stop", function() {
+            sinon.stub(mongoose.connection, 'close');
+            var callback = sinon.spy();
 
-        db.stop(callback);
+            db.stop(callback);
 
-        expect(mongoose.connection.close).to.have.been.calledWith(callback);
+            expect(mongoose.connection.close).to.have.been.calledWith(callback);
+        });
     });
 });

@@ -2,7 +2,7 @@ var rekuire = require('rekuire');
 var expect = rekuire('chai').expect;
 var rest = rekuire('src/util/rest');
 
-describe("MEAN Rest", function() {
+describe("REST Client", function() {
 
     it("is an instance of node-rest-client", function() {
         expect(rest).to.be.instanceof(require('node-rest-client').Client);

@@ -2,7 +2,7 @@ var rekuire = require('rekuire');
 var expect = require('chai').expect;
 var exproose = rekuire('src/exproose');
 
-describe("MEAN API", function() {
+describe("REST API", function() {
 
     var app = exproose.setup(exproose());
 
