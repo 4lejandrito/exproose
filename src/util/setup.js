@@ -7,14 +7,16 @@ var exproose = rekuire('src/exproose');
 
 module.exports = function(app, data, mappings) {
 
+    var mapperPort = 8001;
     try {
         app = app || exproose();
         data = data || rekuire('test/sample/data/db') || {};
         mappings = mappings || rekuire('test/sample/data/mappings') || {};
+        mapperPort = config.mapper.port;
     } catch (e) {}
 
     beforeEach(function(done) {
-        mapper.start(config.mapper.port || 8001, mappings, function() {
+        mapper.start(mapperPort || 8001, mappings, function() {
             app.start(function() {
                 db.apply(mongoose.connection.db, data, done);
             });
