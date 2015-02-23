@@ -7,7 +7,7 @@ var db = require('mean-mock').db;
 module.exports = function(app, data, mappings) {
 
     beforeEach(function(done) {
-        mapper.start(config.mapper.port, mappings || rekuire('test/data/db'), function() {
+        mapper.start(config.mapper.port, mappings || rekuire('test/sample/data/db'), function() {
             app.start(function() {
                 db.apply(mongoose.connection.db, data, done);
             });
