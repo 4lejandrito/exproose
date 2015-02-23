@@ -9,11 +9,12 @@ module.exports = function(app, data, mappings) {
 
     try {
         app = app || exproose();
-        mappings = mappings || rekuire('test/sample/data/db') || {};
+        data = data || rekuire('test/sample/data/db') || {};
+        mappings = mappings || rekuire('test/sample/data/mappings') || {};
     } catch (e) {}
 
     beforeEach(function(done) {
-        mapper.start(config.mapper.port, mappings, function() {
+        mapper.start(config.mapper.port || 8001, mappings, function() {
             app.start(function() {
                 db.apply(mongoose.connection.db, data, done);
             });
