@@ -3,11 +3,17 @@ var config = require('config');
 var mongoose = require('mongoose');
 var mapper = require('mean-mock').mapper;
 var db = require('mean-mock').db;
+var exproose = rekuire('src/exproose');
 
 module.exports = function(app, data, mappings) {
 
+    try {
+        app = app || exproose();
+        mappings = mappings || rekuire('test/sample/data/db') || {};
+    } catch (e) {}
+
     beforeEach(function(done) {
-        mapper.start(config.mapper.port, mappings || rekuire('test/sample/data/db'), function() {
+        mapper.start(config.mapper.port, mappings, function() {
             app.start(function() {
                 db.apply(mongoose.connection.db, data, done);
             });
