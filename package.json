@@ -1,7 +1,7 @@
 {
   "name": "exproose",
   "description": "Simple webapps with express + mongoose",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Alejandro Tardin <alejandro@tardin.com>",
   "main": "./src/exproose",
   "repository": "4lejandrito/exproose",
