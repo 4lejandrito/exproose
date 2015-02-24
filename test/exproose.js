@@ -11,10 +11,6 @@ var mongoose = rekuire('mongoose');
 
 describe("exproose", function() {
 
-    it(".rest is a rest client", function() {
-        expect(exproose).to.have.property('rest').and.equal(rekuire('src/util/rest'));
-    });
-
     it(".setup is the test setup function", function() {
         expect(exproose).to.have.property('setup').and.equal(rekuire('src/util/setup'));
     });

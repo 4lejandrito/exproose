@@ -46,5 +46,4 @@ exproose.model = function(name, schema) {
 };
 
 exproose.config = require('config');
-exproose.rest = require('./util/rest');
 exproose.setup = require('./util/setup');

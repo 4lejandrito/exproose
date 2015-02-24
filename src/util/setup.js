@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var mapper = require('mean-mock').mapper;
 var db = require('mean-mock').db;
 var exproose = rekuire('src/exproose');
+var rest = require('restler');
 
 module.exports = function(app, data, mappings) {
 
@@ -29,11 +30,7 @@ module.exports = function(app, data, mappings) {
         });
     });
 
-    return {
-        url: function(path) {
-            return 'http://localhost:' + config.port + path;
-        },
-        http: rekuire('src/util/rest')
-    };
-
+    return new (rest.service(function() {}, {
+        baseURL: 'http://localhost:' + (config.port || 8000)
+    }))();
 };
