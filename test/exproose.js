@@ -23,6 +23,10 @@ describe("exproose", function() {
         expect(exproose.model).to.equal(rekuire('src/model'));
     });
 
+    it(".user is the user model schema", function() {
+        expect(exproose.user).to.equal(rekuire('src/user'));
+    });
+
     describe('is a function', function() {
 
         describe('when called with no arguments', function() {

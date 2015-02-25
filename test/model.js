@@ -15,14 +15,16 @@ describe("exproose model", function() {
         expect(exproose.model).to.be.a('function');
     });
 
-    describe('when called with (name, schema)', function() {
-        it("returns a mongoose model class with the given schema", function() {
-            var Model = exproose.model('test', {
-                prop1: { type: String, required: true}
+    describe('when called with (name, plugin)', function() {
+        it("returns a mongoose model class with the given plugin applied", function() {
+            var Model = exproose.model('test', function(schema, options) {
+                schema.add({testProp: { type: String, required: true}});
+                schema.methods.testMethod = function() {};
             });
             expect(Object.getPrototypeOf(Model)).to.eq(mongoose.Model);
             expect(Model.modelName).to.eq('test');
-            expect(Model.schema.paths).to.have.property('prop1');
+            expect(Model.schema.paths).to.have.property('testProp');
+            expect(Model.prototype.testMethod).to.be.a('function');
         });
     });
 });

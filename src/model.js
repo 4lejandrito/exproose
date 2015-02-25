@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
-module.exports = function(name, schema) {
-    return mongoose.model(name, mongoose.Schema(schema));
+module.exports = function(name, plugin) {
+    var Schema = new (mongoose.Schema)();
+    Schema.plugin(plugin);
+    return mongoose.model(name, Schema);
 };
