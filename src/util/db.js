@@ -9,6 +9,6 @@ var db = {
     stop: function(cb) {
         mongoose.connection.close(cb);
     }
-}
+};
 
 module.exports = db;

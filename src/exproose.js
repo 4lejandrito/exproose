@@ -15,22 +15,22 @@ module.exports = exproose = function() {
 
         this.server.on('listening', function() {
             db.start(function() {
-                callback && callback.apply(this, arguments);
+                if (callback) callback.apply(this, arguments);
             });
         });
 
         this.server.on('close', function() {
             db.stop();
         });
-    }
+    };
 
     app.stop = function(callback) {
         this.server.close(callback);
-    }
+    };
 
     app.api = function() {
         return api;
-    }
+    };
 
     api.get('/', controllers.info.get);
 
@@ -39,7 +39,7 @@ module.exports = exproose = function() {
     app.use('/api', api);
 
     return app;
-}
+};
 
 exproose.model = function(name, schema) {
     return mongoose.model(name, mongoose.Schema(schema));

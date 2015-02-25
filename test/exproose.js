@@ -49,7 +49,7 @@ describe("exproose", function() {
 
         describe('api()', function() {
             it('returns the /api express router', function() {
-                expect(app.api().__proto__).to.eq(express.Router);
+                expect(Object.getPrototypeOf(app.api())).to.eq(express.Router);
             });
         });
 
@@ -57,7 +57,7 @@ describe("exproose", function() {
 
             it("starts the express app on the default port (8000)", function() {
                 sinon.stub(app, 'listen').returns({on: sinon.stub()});
-                var callback = function() {}
+                var callback = function() {};
                 var oldPort = config.port;
 
                 delete config.port;
@@ -70,7 +70,7 @@ describe("exproose", function() {
 
             it("starts the express app on the port specified in config.port", function() {
                 sinon.stub(app, 'listen').returns({on: sinon.stub()});
-                var callback = function() {}
+                var callback = function() {};
 
                 app.start(callback);
 
