@@ -6,7 +6,16 @@
   [![NPM Downloads][downloads-image]][downloads-url]
   [![Linux Build][travis-image]][travis-url]
 
-Under construction...
+## Features
+- built on top of express.
+- mongodb database integrated via mongoose.
+- config via [config](https://github.com/lorenwest/node-config).
+
+## TODO
+- Add examples here.
+- Integrate logging.
+- Integrate user/auth.
+- Integrate healthchecks.
 
 ## License
 
