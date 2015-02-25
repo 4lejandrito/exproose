@@ -16,7 +16,8 @@
     "mongoose": "3.8.22",
     "rekuire": "^0.1.9",
     "require-directory": "^2.0.0",
-    "restler": "^3.2.2"
+    "restler": "^3.2.2",
+    "scribe-js": "^2.0.4"
   },
   "devDependencies": {
     "chai": "*",

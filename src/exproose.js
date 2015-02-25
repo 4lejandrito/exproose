@@ -3,6 +3,7 @@ var express = require('express');
 var db = require('./util/db');
 var controllers = require('require-directory')(module, 'controllers');
 var mongoose = require('mongoose');
+var scribe = require('scribe-js')();
 
 module.exports = exproose = function() {
 
@@ -30,6 +31,11 @@ module.exports = exproose = function() {
 
     app.api = function() {
         return api;
+    }
+
+    if (process.env.NODE_ENV !== 'test') {
+        app.use(scribe.express.logger());
+        app.use('/logs', scribe.webPanel());
     }
 
     api.get('/', controllers.info.get);
