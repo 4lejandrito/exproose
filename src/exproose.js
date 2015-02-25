@@ -1,8 +1,7 @@
 var config = require('config');
 var express = require('express');
-var db = require('./util/db');
+var db = require('./db');
 var controllers = require('require-directory')(module, 'controllers');
-var mongoose = require('mongoose');
 
 module.exports = exproose = function() {
 
@@ -41,9 +40,6 @@ module.exports = exproose = function() {
     return app;
 };
 
-exproose.model = function(name, schema) {
-    return mongoose.model(name, mongoose.Schema(schema));
-};
-
+exproose.model = require('./model');
 exproose.config = require('config');
-exproose.setup = require('./util/setup');
+exproose.setup = require('./setup');

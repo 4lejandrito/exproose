@@ -2,7 +2,7 @@ var rekuire = require('rekuire');
 var chai = require("chai");
 chai.use(require("sinon-chai"));
 var expect = chai.expect;
-var db = rekuire('src/util/db');
+var db = rekuire('src/db');
 var sinon = require('sinon').sandbox.create();
 var mongoose = require('mongoose');
 var config = require('config');
