@@ -5,6 +5,7 @@
   [![NPM Version][npm-image]][npm-url]
   [![NPM Downloads][downloads-image]][downloads-url]
   [![Linux Build][travis-image]][travis-url]
+  [![Coverage Status][coveralls-image]][coveralls-url]
 
 ## Features
 - built on top of express.
@@ -27,3 +28,5 @@
 [downloads-url]: https://npmjs.org/package/exproose
 [travis-image]: https://img.shields.io/travis/4lejandrito/exproose/master.svg?label=linux
 [travis-url]: https://travis-ci.org/4lejandrito/exproose
+[coveralls-image]: https://coveralls.io/repos/4lejandrito/exproose/badge.svg
+[coveralls-url]: https://coveralls.io/r/4lejandrito/exproose
