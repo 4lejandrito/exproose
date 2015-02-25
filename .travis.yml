@@ -2,3 +2,5 @@ language: node_js
 node_js:
 - '0.10.36'
 services: mongodb
+after_success:
+    npm run coveralls
