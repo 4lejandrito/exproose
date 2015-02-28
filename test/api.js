@@ -4,7 +4,7 @@ var exproose = rekuire('src/exproose');
 
 describe("REST API", function() {
 
-    var client = exproose.setup(exproose());
+    var client = exproose().setup();
 
     describe('/api', function() {
         describe('/', function() {

@@ -1,14 +1,15 @@
+require('./helper');
+
 var rekuire = require('rekuire');
-var expect = require('chai').expect;
 var exproose = rekuire('src/exproose');
 
 describe("API Authentication", function() {
 
     var app = exproose();
-    app.api().get('/test', function(req, res) {
+    app.api.get('/test', function(req, res) {
         res.send('authenticated');
     });
-    var client = exproose.setup(app);
+    var client = app.setup();
 
     it('adds basic auth to every endpoint', function(done) {
         client.get('/api/test', {
