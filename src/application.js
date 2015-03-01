@@ -4,6 +4,7 @@ var auth = require('./auth');
 var mongoose = require('mongoose');
 var User = require('./user');
 var Config = require('config').constructor;
+var bodyParser = require('body-parser');
 
 var Application = module.exports = function() {
     this.config = new Config();
@@ -13,13 +14,18 @@ var Application = module.exports = function() {
 
     var authenticate = auth(this);
 
+    var self = this;
+    this.app.use('*', function(req, res, next) {
+        req.app = self; next();
+    });
+
     this.api.get('/', controllers.info.get);
-    this.api.post('/user', authenticate('signup'), controllers.user.get);
+    this.api.post('/user', controllers.user.create);
     this.api.use('*', authenticate('basic'));
     this.api.get('/user', controllers.user.get);
 
-    this.app.use(require('body-parser').json());
-    this.app.use('/', require('express').static('src/public'));
+    this.app.use(bodyParser.json());
+    this.app.use('/', express.static('src/public'));
     this.app.use('/api', this.api);
 };
 

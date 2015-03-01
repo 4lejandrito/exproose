@@ -11,7 +11,7 @@ describe("exproose", function() {
 
     describe('when called with no arguments', function() {
         it('returns an instance of application', function() {
-            expect(app).to.be.instanceOf(rekuire('src/application'))
+            expect(exproose()).to.be.instanceOf(rekuire('src/application'));
         });
     });
 });

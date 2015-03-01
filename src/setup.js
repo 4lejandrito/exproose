@@ -8,8 +8,8 @@ var rest = require('restler');
 module.exports = function(data, mappings) {
 
     var mapperPort = 8001;
+    var app = this;
     try {
-        app = this;
         data = data || rekuire('test/sample/data/db') || {};
         mappings = mappings || rekuire('test/sample/data/mappings') || {};
         mapperPort = app.config.mapper.port;
