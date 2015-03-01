@@ -73,7 +73,7 @@ describe("REST API", function() {
             describe('POST', function() {
                 it('creates a new user and returns it', function(done) {
                     client.post('/api/user', {
-                        query: {
+                        data: {
                             email: 'alejandro@tardin.com',
                             password: '1234'
                         }
