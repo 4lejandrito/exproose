@@ -42,7 +42,7 @@ describe("Application", function() {
 
                 app.start(function() {
                     expect(mongoose.createConnection)
-                    .to.have.been.calledWith(app.config.db.url);
+                    .to.have.been.calledWith(config.db.url);
                     done();
                 });
             });
@@ -54,7 +54,7 @@ describe("Application", function() {
 
                 app.start(function() {
                     expect(app.app.listen)
-                    .to.have.been.calledWith(app.config.port);
+                    .to.have.been.calledWith(config.port);
                     done();
                 });
             });
@@ -62,7 +62,7 @@ describe("Application", function() {
             it("in the port 8000 if no port is present in config.port", function(done) {
                 sinon.spy(app.app, 'listen');
 
-                delete app.config.port;
+                delete config.port;
 
                 app.start(function() {
                     expect(app.app.listen)
@@ -137,9 +137,5 @@ describe("Application", function() {
 
     it(".setup is the test setup function", function() {
         expect(app.setup).to.equal(rekuire('src/setup'));
-    });
-
-    it(".config is an instance of the config from the config module", function() {
-        expect(app.config).to.be.an.instanceOf(config.constructor);
     });
 });

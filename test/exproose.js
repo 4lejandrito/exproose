@@ -14,4 +14,12 @@ describe("exproose", function() {
             expect(exproose()).to.be.instanceOf(rekuire('src/application'));
         });
     });
+
+    describe('has the properties', function() {
+        describe('config', function() {
+            it("is the config module", function() {
+                expect(exproose.config).to.eq(require('config'));
+            });
+        });
+    });
 });

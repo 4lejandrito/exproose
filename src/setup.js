@@ -4,6 +4,7 @@ var mapper = require('mean-mock').mapper;
 var db = require('mean-mock').db;
 var exproose = rekuire('src/exproose');
 var rest = require('restler');
+var config = require('config');
 
 module.exports = function(data, mappings) {
 
@@ -12,7 +13,7 @@ module.exports = function(data, mappings) {
     try {
         data = data || rekuire('test/sample/data/db') || {};
         mappings = mappings || rekuire('test/sample/data/mappings') || {};
-        mapperPort = app.config.mapper.port;
+        mapperPort = config.mapper.port;
     } catch (e) {}
 
     beforeEach(function(done) {
@@ -30,6 +31,6 @@ module.exports = function(data, mappings) {
     });
 
     return new (rest.service(function() {}, {
-        baseURL: 'http://localhost:' + (app.config.port || 8000)
+        baseURL: 'http://localhost:' + (config.port || 8000)
     }))();
 };

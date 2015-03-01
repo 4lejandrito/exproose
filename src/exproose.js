@@ -1,5 +1,7 @@
 var Application = require('./application');
 
-module.exports = function() {
+var exproose = module.exports = function() {
     return new Application();
 };
+
+exproose.config = require('config');
