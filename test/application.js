@@ -71,11 +71,21 @@ describe("Application", function() {
                 });
             });
 
-            it("and puts the server in app.server", function(done) {
+            it("puts the server in app.server", function(done) {
                 app.start(function() {
                     expect(app.server).to.be.an.instanceOf(require('http').Server);
                     done();
                 });
+            });
+        });
+
+        it("creates the User model", function(done) {
+            sinon.spy(app, 'model');
+
+            app.start(function() {
+                expect(Object.getPrototypeOf(app.User)).to.eq(mongoose.Model);
+                expect(app.model).to.have.been.calledWith('user', [rekuire('src/user')]);
+                done();
             });
         });
     });
@@ -104,17 +114,17 @@ describe("Application", function() {
         });
     });
 
-    describe('model(name, plugin)', function() {
+    describe('model(name, plugins)', function() {
         afterEach(function(done) {
             app.stop(done);
         });
 
-        it("returns a mongoose model class with the given plugin applied", function(done) {
+        it("returns a mongoose model class with the given plugins applied", function(done) {
             app.start(function() {
-                var Model = app.model('test', function(schema, options) {
+                var Model = app.model('test', [function(schema, options) {
                     schema.add({testProp: { type: String, required: true}});
                     schema.methods.testMethod = function() {};
-                });
+                }]);
                 expect(Object.getPrototypeOf(Model)).to.eq(mongoose.Model);
                 expect(Model.modelName).to.eq('test');
                 expect(Model.schema.paths).to.have.property('testProp');

@@ -27,9 +27,9 @@ Application.prototype = {
 
     setup: require('./setup'),
 
-    model: function(name, plugin) {
+    model: function(name, plugins) {
         var Schema = new (mongoose.Schema)();
-        Schema.plugin(plugin);
+        plugins.forEach(function(plugin) { Schema.plugin(plugin); });
         return this.connection.model(name, Schema);
     },
 
@@ -38,7 +38,7 @@ Application.prototype = {
         this.connection = mongoose.createConnection(this.config.db.url);
 
         this.connection.on('connected', function() {
-            self.User = self.model('user', User);
+            self.User = self.model('user', [User]);
             self.server = self.app.listen(self.config.port || 8000, callback);
         });
     },

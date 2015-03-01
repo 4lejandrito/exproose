@@ -1,5 +1,6 @@
+require('./helper');
+
 var rekuire = require('rekuire');
-var expect = require('chai').expect;
 var exproose = rekuire('src/exproose');
 
 describe("REST API", function() {
