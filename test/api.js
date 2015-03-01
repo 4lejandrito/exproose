@@ -80,7 +80,7 @@ describe("REST API", function() {
                     }).on('complete', function(data) {
                         expect(data).to.include({
                             email: 'alejandro@tardin.com'
-                        })//.and.not.to.have.property('password');
+                        }).and.not.to.have.property('password');
                         done();
                     });
                 });
@@ -94,7 +94,7 @@ describe("REST API", function() {
                     }).on('complete', function(data) {
                         expect(data).to.include({
                             email: '1@example.com'
-                        })//.and.not.to.have.property('password');
+                        }).and.not.to.have.property('password');
                         done();
                     });
                 });
