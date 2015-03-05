@@ -1,5 +1,4 @@
 var rekuire = require('rekuire');
-var mongoose = require('mongoose');
 var mapper = require('mean-mock').mapper;
 var db = require('mean-mock').db;
 var exproose = rekuire('src/exproose');
