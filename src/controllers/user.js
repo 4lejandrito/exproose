@@ -4,15 +4,16 @@ module.exports = {
     },
 
     create: function(req, res) {
+        var users = req.app.db.get('users');
         var email = req.body.email;
         var password = req.body.password;
 
-        req.app.User.findOne({email: email}, function(err, user) {
+        users.findOne({email: email}, function(err, user) {
             if (err) throw err;
             if (user) {
-                return res.send(400, 'Existing user');
+                return res.status(400).send('Existing user');
             } else {
-                new req.app.User({email: email, password: password}).save(function(err, user) {
+                users.insert({email: email, password: password}, function(err, user) {
                     if (err) throw err;
                     res.send(user);
                 });

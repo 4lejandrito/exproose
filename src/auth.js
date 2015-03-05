@@ -9,16 +9,16 @@ module.exports = function(app) {
     });
 
     passport.deserializeUser(function(id, done) {
-        app.User.findById(id, function(err, user) {
+        app.db.get('users').findById(id, function(err, user) {
             done(err, user);
         });
     });
 
     passport.use(new BasicStrategy(function(username, password, done) {
-        app.User.findOne({ email: username }, function (err, user) {
+        app.db.get('users').findOne({ email: username }, function (err, user) {
             if (err) { return done(err); }
             if (!user) { return done(null, false); }
-            if (!user.validPassword(password)) { return done(null, false); }
+            if (user.password !== password) { return done(null, false); }
             return done(null, user);
         });
     }));
